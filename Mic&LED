@@ -1,0 +1,159 @@
+//音乐歌唱祖国
+ 
+#define NTF0 -1
+#define NTF1 350
+#define NTF2 393
+#define NTF3 441
+#define NTF4 495
+#define NTF5 556
+#define NTF6 624
+#define NTF7 661
+ 
+#define NTFL1 175
+#define NTFL2 196
+#define NTFL3 221
+#define NTFL4 234
+#define NTFL5 262
+#define NTFL6 294
+#define NTFL7 330
+ 
+#define NTFH1 700
+#define NTFH2 786
+#define NTFH3 882
+#define NTFH4 935
+#define NTFH5 1049
+#define NTFH6 1178
+#define NTFH7 1322
+ 
+//列出全部D调的频率
+#define WHOLE 1
+#define HALF 0.5
+#define QUARTER 0.25
+#define EIGHTH 0.125
+#define SIXTEENTH 0.0625
+//列出所有节拍
+int tune1[] = 
+{
+  NTF1,NTF1,NTF1,NTFL5,
+  NTF3,NTF1,NTF5,NTF6,
+  NTF5,NTF5,NTF5,NTF6,NTF6,
+  NTF6,NTF5,NTF4,NTF6,NTF5,
+  NTF5,NTF5,NTF5,NTF6,NTF6,
+  NTF2,NTF2,NTF2,NTF5,NTF4,
+  NTF3,NTFL5,NTFL5,NTF5,NTF5,NTF6,
+  NTF5,NTF4,NTF3,NTF2,NTF1,
+  NTF1,NTF5,NTF5,NTFH1,NTFH1,
+  NTF6,NTF6,NTF5,NTF4,NTF5,
+  NTF6,NTF2,NTF2,NTF5,NTF5,NTF6,
+  NTF5,NTF4,NTF3,NTF2,NTF1,
+  NTF1,NTF0,
+  NTF1,NTFL5,NTF3,NTF3,NTF0,
+  NTF3,NTF1,NTF6,NTF6,NTF0,
+  NTFL6,NTFL6,NTF2,NTF2,NTF3,
+  NTF2,NTF1,NTFL7,NTFL6,NTFL5,
+  NTF1,NTFL5,NTFL6,NTFL6,NTFL5,
+  NTF1,NTF2,NTF3,NTF0,
+  NTF2,NTF6,NTF6,NTF5,NTF5,NTF3,
+  NTF2,NTF6,NTF5,NTF0,NTFH1,
+  NTFH1,NTFH1,NTFH1,NTF5,NTF6,NTF1,
+  NTF6,NTF5,NTF4,NTF6,NTF5,NTF0,
+  NTFH1,NTFH1,NTFH1,NTFH1,NTF5,NTF5,NTF6,
+  NTF5,NTF4,NTF3,NTF2,NTF1,NTFL5,NTFL5,
+};
+float durt1[]=
+{
+  0.5+0.25,0.25,1,1,
+  1,1,1+0.5,0.5,
+  1,0.5+0.25,0.25,1,1,
+  0.5+0.25,0.25,0.5,0.5,1+1,
+  1,0.5+0.25,0.25,1,1,
+  1,0.5+0.25,0.25,1+0.5,0.5,
+  1,0.5+0.25,0.25,1,0.5,0.5,
+  0.5,0.5,0.5,0.5,1+1,
+  1,0.5+0.25,0.25,1,1,
+  1,0.5+0.25,0.25,1+0.5,0.5,
+  1,0.5+0.25,0.25,1,0.5,0.5,
+  0.5,0.5,0.5,0.5,1+1,
+  1+0.5,0.5,
+  0.5+0.25,0.25,1,1+0.5,0.5,
+  0.5+0.25,0.25,1,1+0.5,0.5,
+  1+0.5,0.5,1,0.5+0.25,0.25,
+  0.5,0.5,0.5,0.5,1+1,
+  1,1,0.5,1,0.5,
+  1,1,1,1,
+  1,0.5,0.5,0.5,1,0.5,
+  1,1,1,0.5,0.5,
+  0.5+0.25,0.25,0.5,0.5,1+0.5,0.5,
+  0.5+0.25,0.25,0.5,0.5,1,1,
+  0.5+0.25,0.25,0.5,0.5,1,0.5,0.5,
+  0.5,0.5,0.5,0.5,1,0.5+0.25,0.25,
+};
+int length;
+int tonepin=1;   
+int led[] = {7,8,9,10,11,13};
+int huxi[] ={3,4,6};
+void setup()
+{
+  pinMode(tonepin,OUTPUT);
+  for(int i=0;i<8;i++){
+    pinMode(led[i],OUTPUT); 
+  }
+  for(int i=0;i<3;i++){
+    pinMode(huxi[i],OUTPUT); 
+  }
+  length=sizeof(tune1)/sizeof(tune1[0]);   //计算长度
+}
+void loop()
+{   
+  for(int i=0;i<3;i++){
+  digitalWrite(huxi[i],1);
+  delay(100);
+  }//小三角逐个亮起
+  for(int i=0;i<8;i++){
+  digitalWrite(led[i],1);
+  delay(100);
+  }//箭头型led逐个亮起
+  delay(1000);
+  for(int i=0;i<8;i++){
+  digitalWrite(led[i],0);
+  delay(500);
+  }//箭头型灯逐个灭掉
+  for(int i=0;i<3;i++){
+  digitalWrite(huxi[i],0);
+  delay(500);
+  }//小三角灯逐个灭掉
+  int bright = 0,f = -15;
+  int k=0;
+  for(int x=0;x<length;x++)
+  {
+    k++;
+    if(k<45){//两个led流水
+    digitalWrite(led[k%8],1);
+    digitalWrite(led[(k+1)%8],1);
+    }else{
+      for(int i=0;i<8;i++){//箭头型的led跟随音乐的节奏一起闪烁
+      digitalWrite(led[i],1);
+      }
+    }
+    tone(tonepin,tune1[x]); //音调
+    if(bright==0||bright==255){
+       f =  -f;
+    }
+    bright+=f;
+    for(int i=0;i<3;i++){//小三角型led灯跟随音乐的节拍一起呼吸
+      analogWrite(huxi[k%3],bright);
+    }
+    delay(400*durt1[x]);//节拍进行延时
+    if(k<45){
+    digitalWrite(led[k%8],0);
+    digitalWrite(led[(k+1)%8],0);
+    }else{
+      for(int i=0;i<8;i++){
+      digitalWrite(led[i],0);
+      }
+    }
+    delay(100*durt1[x]); //这里用来根据节拍调节延时，500这个指数可以自己调整，在该音乐中，我发现用500比较合适。
+    noTone(tonepin);
+  }
+  
+}
