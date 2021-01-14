@@ -132,21 +132,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap
     scene.add(helper)
 }
 initLight()
-  // 让世界动起来
 
-  // 添加文字
-var loader = new THREE.FontLoader();
-loader.load('./js/font.json', function (font) {
-    var mesh = new THREE.Mesh(new THREE.TextGeometry('Please press Up/Down/Ledt/Right or W/A/S/D', {
-        font: font,
-        size: 0.4,
-        height: 0.1
-    }), new THREE.MeshLambertMaterial());
-    mesh.position.set(-5, 2, 2);
-    mesh.rotation.set(1.2, 0, 0)
-    scene.add(mesh);
-    render();
-});
 // 添加按键时走动
 document.addEventListener('keydown', handleKeydown, false);
 // 添加鼠标移动时事件
